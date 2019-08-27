@@ -12,4 +12,4 @@ node server
 
 ```
 
-![](.\public\img\bg.png)
+![](./public/img/bg.png)

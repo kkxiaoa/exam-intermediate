@@ -1,12 +1,11 @@
-const express = require('express');
-const path = require('path');
+const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const mailTransport = require("./lib/exam-intermediate");
 
-app.set('port', (process.env.port || 9001));
+app.set("port", (process.env.port || 8008));
 app.use(bodyParser.json());
-app.use('/', express.static(path.resolve(__dirname + "/public")));
+app.use("/", express.static("./public"));
 
 app.post("/api/email", (req, res) => {
   try {
@@ -15,7 +14,7 @@ app.post("/api/email", (req, res) => {
       res.status(200);
       res.json({
         code: 0,
-        errMsg: 'ok',
+        errMsg: "ok",
         data: response
       });
     }).catch((err) => {
@@ -32,6 +31,6 @@ app.post("/api/email", (req, res) => {
     });
   }
 })
-app.listen(app.get('port'), () => {
-  console.log("To preview this page at http://localhost:" + app.get('port'));
+app.listen(app.get("port"), () => {
+  console.log("preview page http://localhost:" + app.get("port"));
 })
