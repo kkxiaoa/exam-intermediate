@@ -9,7 +9,7 @@ app.use("/", express.static("./public"));
 
 app.post("/api/email", (req, res) => {
   try {
-    let male = mailTransport.createTransport(req.body)
+    let male = mailTransport.createTransport(req.body);
     male.sendMail().then((response) => {
       res.status(200);
       res.json({
@@ -33,4 +33,4 @@ app.post("/api/email", (req, res) => {
 })
 app.listen(app.get("port"), () => {
   console.log("preview page http://localhost:" + app.get("port"));
-})
+});
