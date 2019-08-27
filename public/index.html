@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- cdn -->
+  <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="./fonts/iconfont.css">
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <title>Mails</title>
+  <style>
+    .container{
+      max-width: 600px;
+      margin-top: 8vh; 
+    }
+    h1 {
+      margin-bottom: 30px !important;
+    }
+    .form-group {
+      position: relative;
+    }
+    i.iconfont {
+      position: absolute;
+      right: -20px;
+      top: 30px;
+    }
+    .text-danger {
+      color: #f00;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row clearfix">
+      <div class="col-md-12 column">
+        <h3 class="h3">发送邮件</h3>
+        <blockquote>
+          <p>
+            基于阿里邮箱推送服务封装的sdk
+          </p> <small>相关内容 <a href="https://help.aliyun.com/document_detail/29444.html?spm=a2c4g.11186623.6.597.22653016eJ4hhp"><cite>aliyun official docs</cite></a></small>
+        </blockquote>
+        <form role="form" action="/api/email" method="post">
+          <input type="hidden" class="form-control" id="" value="single" name="action" />
+          <div class="form-group">
+            <label for=""><span class="text-danger">*</span> 发信地址</label>
+            <input type="email" class="form-control" required placeholder="admin@mail.kkxiao.xyz" id="" value="admin@mail.kkxiao.xyz" name="accountName" />
+            <i class="iconfont icon-help " data-toggle="tooltip" data-placement="right" title="填写阿里云邮箱配置的发新地址"></i>
+          </div>
+          <div class="form-group">
+            <label for=""><span class="text-danger">*</span>回信地址</label>
+            <input type="email" class="form-control" required id="" name="replyToAddress" value="javascirpts@163.com" />
+            <i class="iconfont icon-help " data-toggle="tooltip" data-placement="right" title="填写阿里云邮箱配置的真实回信邮箱地址"></i>
+          </div>
+          <div class="form-group">
+            <label for=""><span class="text-danger">*</span>收件人</label>
+            <input type="email" class="form-control" required id=""  value="kkxiaoa@126.com" placeholder="name@example.com" name="toAddress"/>
+            <i class="iconfont icon-help " data-toggle="tooltip" data-placement="right" title="多个email地址使用,分隔"></i>
+          </div>
+          <div class="form-group">
+            <label for="">发信人昵称</label>
+            <input type="text" class="form-control" id="" name="fromAlias"/>
+          </div>
+          <div class="form-group">
+            <label for="">邮件主题</label>
+            <input type="text" class="form-control" id="" name="subject"/>
+          </div>
+          <div class="form-group">
+            <label for=""><span class="text-danger">*</span>KeyID</label>
+            <input type="text" class="form-control" required id="" name="accessKeyID"/>
+          </div>
+          <div class="form-group">
+            <label for=""><span class="text-danger">*</span>Secret</label>
+            <input type="text" class="form-control" required id="" name="accessKeySecret"/>
+          </div>
+          <div class="form-group">
+            <label for=""><span class="text-danger">*</span>内容</label>
+            <textarea class="form-control" rows="3" required name="htmlBody"></textarea>
+          </div>
+          <div class="checkbox">
+          </div><button type="button" class="btn btn-default">发送</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+<script>
+  $('.btn').click(()=>{
+    var fields = $('form').serializeArray();
+    var obj = {};
+    $.each(fields, function(index, field) {
+      obj[field.name] = field.value;
+    })
+    $.ajax({
+        type: "post",
+        url: "/api/email",
+        contentType: 'application/json',
+        dataType: 'JSON',
+        data: JSON.stringify(obj),
+        success: function(res) {
+          console.log(res.data)
+        }
+    });
+  })
+</script>
+</html>
