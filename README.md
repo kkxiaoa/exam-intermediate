@@ -9,3 +9,7 @@ yarn install
 
 # serve with hot reload at localhost:9001
 node server
+
+```
+
+![](D:\exam-intermediate\public\img\bg.png)
