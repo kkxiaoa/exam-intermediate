@@ -12,4 +12,4 @@ node server
 
 ```
 
-![](D:\exam-intermediate\public\img\bg.png)
+![](.\public\img\bg.png)
