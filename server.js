@@ -30,7 +30,7 @@ app.post("/api/email", (req, res) => {
       errMsg: err.message
     });
   }
-})
+});
 app.listen(app.get("port"), () => {
   console.log("preview page http://localhost:" + app.get("port"));
 });
